@@ -1,34 +1,32 @@
 package com.devco.eli.videojuegos.genero.aplicacion;
 
-import com.devco.eli.videojuegos.genero.dominio.GeneroService;
-import com.devco.eli.videojuegos.genero.infraestructura.Genero;
+import com.devco.eli.videojuegos.genero.dominio.Genero;
+import com.devco.eli.videojuegos.genero.dominio.dto.GeneroDto;
+import com.devco.eli.videojuegos.genero.dominio.port.IGeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/tienda/genero")
 public class GeneroController {
     @Autowired
-    private GeneroService generoService;
+    private IGeneroService generoService;
 
     @GetMapping
-
     public List<Genero> getAll() {
-        return generoService.getGeneros();
+        return generoService.getAll();
     }
 
     @GetMapping("/{generoId}")
-    public Optional<Genero> getById(@PathVariable("generoId") Long generoId) {
-        return generoService.getGenero(generoId);
+    public Genero getById(@PathVariable("generoId") Long generoId) {
+        return generoService.getById(generoId);
     }
 
     @PostMapping
-    public Genero saveUpdate(@RequestBody Genero genero) {
-        generoService.saveOrUpdate(genero);
-        return genero;
+    public Genero saveUpdate(@RequestBody GeneroDto dto) {
+        return generoService.createOrUpdate(dto);
     }
 
     @DeleteMapping("/{generoId}")

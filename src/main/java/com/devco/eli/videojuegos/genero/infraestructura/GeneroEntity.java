@@ -7,11 +7,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "tbl_genero")
-public class Genero {
+public class GeneroEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long generoId;
 
+    @Column(unique = true)
     private String nombreGenero;
-
 }
