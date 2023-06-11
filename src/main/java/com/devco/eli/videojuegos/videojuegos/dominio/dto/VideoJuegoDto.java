@@ -5,11 +5,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CreateVideojuego {
-    private String nombreJuego;
-    private List<Long> genero;
+public class VideoJuegoDto {
+    private String nombre;
     private String descripcion;
-    private Long consolaId;
     private Integer cantidad;
     private Long precio;
+    private Long consolaId;
+    private List<Long> generosIds;
 }

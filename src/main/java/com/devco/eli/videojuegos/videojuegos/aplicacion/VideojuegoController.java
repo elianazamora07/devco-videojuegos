@@ -1,38 +1,47 @@
 package com.devco.eli.videojuegos.videojuegos.aplicacion;
 
-import com.devco.eli.videojuegos.videojuegos.dominio.VideojuegoService;
-import com.devco.eli.videojuegos.videojuegos.dominio.dto.CreateVideojuego;
-import com.devco.eli.videojuegos.videojuegos.infraestructura.Videojuego;
+import com.devco.eli.videojuegos.videojuegos.dominio.VideoJuego;
+import com.devco.eli.videojuegos.videojuegos.dominio.dto.UpdateGerosDto;
+import com.devco.eli.videojuegos.videojuegos.dominio.dto.VideoJuegoDto;
+import com.devco.eli.videojuegos.videojuegos.dominio.port.IVideoJuegoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/tienda/videojuegos")
 public class VideojuegoController {
     @Autowired
-    private VideojuegoService videojuegoService;
+    private IVideoJuegoService videojuegoService;
 
     @GetMapping
-    public List<Videojuego> getAll() {
-        return videojuegoService.getVideojuegos();
+    public List<VideoJuego> getAll() {
+        return videojuegoService.getAll();
     }
 
     @GetMapping("/{videojuegoId}")
-    public Optional<Videojuego> getById(@PathVariable("videojuegoId") Long videojuegoId) {
-        return videojuegoService.getVideojuego(videojuegoId);
+    public VideoJuego getById(@PathVariable("videojuegoId") Long videojuegoId) {
+        return videojuegoService.getById(videojuegoId);
     }
 
     @PostMapping
-    public Videojuego create(@RequestBody CreateVideojuego createVideojuego) {
-        return videojuegoService.create(createVideojuego);
+    public VideoJuego create(@RequestBody VideoJuegoDto dto) {
+        return videojuegoService.create(dto);
+    }
 
+    @PutMapping("/{videojuegoId}")
+    public VideoJuego update(@PathVariable("videojuegoId") Long videojuegoId, @RequestBody VideoJuegoDto dto) {
+        return videojuegoService.update(videojuegoId, dto);
+    }
+
+    @PatchMapping("/{videojuegoId}")
+    public VideoJuego updateGeneros(@PathVariable("videojuegoId") Long videojuegoId, @RequestBody UpdateGerosDto dto) {
+        return videojuegoService.updateGeneros(videojuegoId, dto);
     }
 
     @DeleteMapping("/{videojuegoId}")
-    public void saveUpdate(@PathVariable("videojuegoId") Long videojuegoId) {
+    public void delete(@PathVariable("videojuegoId") Long videojuegoId) {
         videojuegoService.delete(videojuegoId);
     }
 }

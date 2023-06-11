@@ -10,22 +10,22 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "tbl_videojuego")
-public class Videojuego {
+public class VideoJuegoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long videojuegoId;
+    private Long juegoId;
 
     private String nombreJuego;
 
-    @OneToMany(mappedBy = "generoId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GeneroEntity> generoEntity;
-
     private String descripcion;
-
-    @ManyToOne()
-    private ConsolaEntity consolaEntity;
 
     private Integer cantidad;
 
     private Long precio;
+
+    @ManyToOne()
+    private ConsolaEntity consolaEntity;
+
+    @OneToMany(mappedBy = "generoId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GeneroEntity> generosEntity;
 }
