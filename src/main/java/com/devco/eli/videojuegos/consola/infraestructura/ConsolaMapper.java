@@ -37,8 +37,6 @@ public class ConsolaMapper {
         Consola dominio = new Consola();
         dominio.setId(entity.getConsolaId());
         dominio.setNombre(entity.getNombreConsola());
-        dominio.setCreateAt(entity.getCreateAt());
-        dominio.setUpdateAt(entity.getUpdateAt());
         return dominio;
     }
 
@@ -49,8 +47,6 @@ public class ConsolaMapper {
         ConsolaEntity entity = new ConsolaEntity();
         entity.setConsolaId(dominio.getId());
         entity.setNombreConsola(dominio.getNombre());
-        entity.setCreateAt(dominio.getCreateAt());
-        entity.setUpdateAt(dominio.getUpdateAt());
         return entity;
     }
 }

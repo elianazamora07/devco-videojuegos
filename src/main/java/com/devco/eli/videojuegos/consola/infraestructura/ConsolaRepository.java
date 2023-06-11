@@ -23,7 +23,7 @@ public class ConsolaRepository implements IConsolaRepository {
 
     @Override
     public Optional<Consola> getByname(String name) {
-        Optional<ConsolaEntity>  consolaEntity = jpa.findByNombreConsola(name);
+        Optional<ConsolaEntity> consolaEntity = jpa.findByNombreConsola(name);
         return ConsolaMapper.entityToOptionalDomain(consolaEntity);
     }
 

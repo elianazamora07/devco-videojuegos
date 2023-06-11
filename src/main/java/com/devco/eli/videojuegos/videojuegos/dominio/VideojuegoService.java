@@ -3,8 +3,8 @@ package com.devco.eli.videojuegos.videojuegos.dominio;
 
 import com.devco.eli.videojuegos.consola.infraestructura.ConsolaEntity;
 import com.devco.eli.videojuegos.consola.infraestructura.ConsolaJpa;
-import com.devco.eli.videojuegos.genero.infraestructura.Genero;
-import com.devco.eli.videojuegos.genero.infraestructura.GeneroRepository;
+import com.devco.eli.videojuegos.genero.infraestructura.GeneroEntity;
+import com.devco.eli.videojuegos.genero.infraestructura.GeneroJpa;
 import com.devco.eli.videojuegos.videojuegos.dominio.dto.CreateVideojuego;
 import com.devco.eli.videojuegos.videojuegos.infraestructura.Videojuego;
 import com.devco.eli.videojuegos.videojuegos.infraestructura.VideojuegoRepository;
@@ -19,7 +19,7 @@ public class VideojuegoService {
     @Autowired
     private VideojuegoRepository videojuegoRepository;
     @Autowired
-    private GeneroRepository generoRepository;
+    private GeneroJpa generoJpa;
     @Autowired
     private ConsolaJpa consolaJpa;
 
@@ -41,8 +41,8 @@ public class VideojuegoService {
         ConsolaEntity consolaEntity = consolaJpa.findById(createVideojuego.getConsolaId()).get();
         videojuego.setConsolaEntity(consolaEntity);
 
-        List<Genero> generos = generoRepository.findAllById(createVideojuego.getGenero());
-        videojuego.setGenero(generos);
+        List<GeneroEntity> generoEntities = generoJpa.findAllById(createVideojuego.getGenero());
+        videojuego.setGeneroEntity(generoEntities);
 
         return videojuegoRepository.save(videojuego);
     }

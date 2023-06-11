@@ -1,9 +1,7 @@
 package com.devco.eli.videojuegos.consola.dominio;
 
-import com.devco.eli.videojuegos.comun.errores.BadRequest;
+import com.devco.eli.videojuegos.common.exceptions.exception.BadRequest;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 public class Consola {
@@ -12,8 +10,6 @@ public class Consola {
 
     private Long id;
     private String nombre;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
 
     public void isValid() {
         if (nombre.isBlank()) {

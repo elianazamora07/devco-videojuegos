@@ -11,7 +11,7 @@ public interface IConsolaService {
 
     List<Consola> getAll();
 
-    Consola createOrUpdate(ConsolaDto consolaDto);
+    Consola createOrUpdate(ConsolaDto dto);
 
     void delete(Long id);
 }

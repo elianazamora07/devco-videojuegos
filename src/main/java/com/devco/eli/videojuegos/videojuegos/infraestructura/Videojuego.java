@@ -1,7 +1,7 @@
 package com.devco.eli.videojuegos.videojuegos.infraestructura;
 
 import com.devco.eli.videojuegos.consola.infraestructura.ConsolaEntity;
-import com.devco.eli.videojuegos.genero.infraestructura.Genero;
+import com.devco.eli.videojuegos.genero.infraestructura.GeneroEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,7 +18,7 @@ public class Videojuego {
     private String nombreJuego;
 
     @OneToMany(mappedBy = "generoId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Genero> genero;
+    private List<GeneroEntity> generoEntity;
 
     private String descripcion;
 
