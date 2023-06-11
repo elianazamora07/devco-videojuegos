@@ -1,5 +1,8 @@
-package com.devco.eli.videojuegos.comun.errores;
+package com.devco.eli.videojuegos.common.exceptions;
 
+import com.devco.eli.videojuegos.common.exceptions.exception.BadRequest;
+import com.devco.eli.videojuegos.common.exceptions.exception.ForbiddenRequest;
+import com.devco.eli.videojuegos.common.exceptions.exception.NotFoundRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,30 +12,30 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.concurrent.ConcurrentHashMap;
 
 @ControllerAdvice
-public class ManejadorErrores extends ResponseEntityExceptionHandler {
+public class HandlerException extends ResponseEntityExceptionHandler {
 
     private static final String OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR =
             "Ocurrió un error favor contactar al administrador.";
     private static final ConcurrentHashMap<String, Integer> STATUS_CODE = new ConcurrentHashMap<>();
 
-    public ManejadorErrores() {
+    public HandlerException() {
         STATUS_CODE.put(BadRequest.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         STATUS_CODE.put(ForbiddenRequest.class.getSimpleName(), HttpStatus.FORBIDDEN.value());
         STATUS_CODE.put(NotFoundRequest.class.getSimpleName(), HttpStatus.NOT_FOUND.value());
     }
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ApiError> handleAllExceptions(Exception exception) {
-        ResponseEntity<ApiError> result;
+    public final ResponseEntity<ApiException> handleAllExceptions(Exception exception) {
+        ResponseEntity<ApiException> result;
 
-        String excepcionNombre = exception.getClass().getSimpleName();
-        String mensaje = exception.getMessage();
-        Integer codigo = STATUS_CODE.get(excepcionNombre);
-        if (codigo != null) {
-            ApiError error = new ApiError(mensaje);
-            result = new ResponseEntity<>(error, HttpStatus.valueOf(codigo));
+        String exceptionName = exception.getClass().getSimpleName();
+        String message = exception.getMessage();
+        Integer code = STATUS_CODE.get(exceptionName);
+        if (code != null) {
+            ApiException error = new ApiException(message);
+            result = new ResponseEntity<>(error, HttpStatus.valueOf(code));
         } else {
-            ApiError error = new ApiError(OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);
+            ApiException error = new ApiException(OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);
             result = new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

@@ -1,4 +1,4 @@
-package com.devco.eli.videojuegos.comun.swagger;
+package com.devco.eli.videojuegos.common.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import java.util.ArrayList;
 
 import static springfox.documentation.builders.PathSelectors.regex;
+
 @Configuration
 @EnableWebMvc
 public class SwaggerConfig implements WebMvcConfigurer {
@@ -28,7 +29,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
 
     private ApiInfo metaInfo() {
-        ApiInfo apiInfo = new ApiInfo(
+        return new ApiInfo(
                 "API de Tienda de video juegos",
                 "Este API es usado para un proyecto de venta de video juegos.",
                 "1.0",
@@ -40,7 +41,5 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 "",
                 new ArrayList<>()
         );
-
-        return apiInfo;
     }
 }

@@ -1,4 +1,4 @@
-package com.devco.eli.videojuegos.comun.errores;
+package com.devco.eli.videojuegos.common.exceptions.exception;
 
 public class BadRequest extends RuntimeException {
 
