@@ -17,27 +17,27 @@ public class ConsolaRepository implements IConsolaRepository {
 
     @Override
     public Optional<Consola> getById(Long id) {
-        Optional<ConsolaEntity> consolaEntity = jpa.findById(id);
-        return ConsolaMapper.entityToOptionalDomain(consolaEntity);
+        Optional<ConsolaEntity> entity = jpa.findById(id);
+        return ConsolaMapper.entityToOptionalDomain(entity);
     }
 
     @Override
     public Optional<Consola> getByname(String name) {
-        Optional<ConsolaEntity> consolaEntity = jpa.findByNombreConsola(name);
-        return ConsolaMapper.entityToOptionalDomain(consolaEntity);
+        Optional<ConsolaEntity> entity = jpa.findByNombreConsola(name);
+        return ConsolaMapper.entityToOptionalDomain(entity);
     }
 
     @Override
     public List<Consola> getAll() {
-        List<ConsolaEntity> consolas = jpa.findAll();
-        return ConsolaMapper.entityToDominio(consolas);
+        List<ConsolaEntity> entities = jpa.findAll();
+        return ConsolaMapper.entityToDominio(entities);
     }
 
     @Override
-    public Consola save(Consola consola) {
-        ConsolaEntity consolaToSave = ConsolaMapper.dominioToEntity(consola);
-        consolaToSave = jpa.save(consolaToSave);
-        return ConsolaMapper.entityToDominio(consolaToSave);
+    public Consola save(Consola domain) {
+        ConsolaEntity entityToSave = ConsolaMapper.dominioToEntity(domain);
+        entityToSave = jpa.save(entityToSave);
+        return ConsolaMapper.entityToDominio(entityToSave);
     }
 
     @Override

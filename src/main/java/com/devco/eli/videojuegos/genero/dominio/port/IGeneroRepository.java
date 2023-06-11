@@ -12,7 +12,9 @@ public interface IGeneroRepository {
 
     List<Genero> getAll();
 
-    Genero save(Genero genero);
+    List<Genero> getAllByIds(List<Long> ids);
+
+    Genero save(Genero domain);
 
     void deleteById(Long id);
 }

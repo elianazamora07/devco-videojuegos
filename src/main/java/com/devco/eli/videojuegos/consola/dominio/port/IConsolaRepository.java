@@ -13,7 +13,7 @@ public interface IConsolaRepository {
 
     List<Consola> getAll();
 
-    Consola save(Consola consola);
+    Consola save(Consola domain);
 
     void deleteById(Long id);
 }

@@ -11,6 +11,8 @@ public interface IGeneroService {
 
     List<Genero> getAll();
 
+    List<Genero> getAllByIds(List<Long> ids);
+
     Genero createOrUpdate(GeneroDto dto);
 
     void delete(Long id);

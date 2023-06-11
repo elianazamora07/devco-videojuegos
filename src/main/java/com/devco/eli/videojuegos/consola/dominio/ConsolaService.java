@@ -7,12 +7,10 @@ import com.devco.eli.videojuegos.consola.dominio.port.IConsolaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class ConsolaService implements IConsolaService {
 
     private static final String CONSOLA_NO_ENCONTRADA = "No se encontro la consola con el ID ";
@@ -40,6 +38,8 @@ public class ConsolaService implements IConsolaService {
         Consola consolaToSave;
         consolaToSave = consola.orElseGet(Consola::new);
         consolaToSave.setNombre(dto.getNombre());
+
+        consolaToSave.isValid();
         return consolaRepository.save(consolaToSave);
     }
 

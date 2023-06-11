@@ -30,7 +30,7 @@ public class GeneroController {
     }
 
     @DeleteMapping("/{generoId}")
-    public void saveUpdate(@PathVariable("generoId") Long generoId) {
+    public void delete(@PathVariable("generoId") Long generoId) {
         generoService.delete(generoId);
     }
 }

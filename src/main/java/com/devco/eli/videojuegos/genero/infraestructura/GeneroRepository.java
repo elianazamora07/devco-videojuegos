@@ -16,27 +16,33 @@ public class GeneroRepository implements IGeneroRepository {
 
     @Override
     public Optional<Genero> getById(Long id) {
-        Optional<GeneroEntity> generoEntity = jpa.findById(id);
-        return GeneroMapper.entityToOptionalDomain(generoEntity);
+        Optional<GeneroEntity> entity = jpa.findById(id);
+        return GeneroMapper.entityToOptionalDomain(entity);
     }
 
     @Override
     public Optional<Genero> getByname(String name) {
-        Optional<GeneroEntity> generoEntity = jpa.findByNombreGenero(name);
-        return GeneroMapper.entityToOptionalDomain(generoEntity);
+        Optional<GeneroEntity> entity = jpa.findByNombreGenero(name);
+        return GeneroMapper.entityToOptionalDomain(entity);
     }
 
     @Override
     public List<Genero> getAll() {
-        List<GeneroEntity> generos = jpa.findAll();
-        return GeneroMapper.entityToDominio(generos);
+        List<GeneroEntity> entities = jpa.findAll();
+        return GeneroMapper.entityToDominio(entities);
     }
 
     @Override
-    public Genero save(Genero genero) {
-        GeneroEntity generoToSave = GeneroMapper.dominioToEntity(genero);
-        generoToSave = jpa.save(generoToSave);
-        return GeneroMapper.entityToDominio(generoToSave);
+    public List<Genero> getAllByIds(List<Long> ids) {
+        List<GeneroEntity> entities = jpa.findAllById(ids);
+        return GeneroMapper.entityToDominio(entities);
+    }
+
+    @Override
+    public Genero save(Genero domain) {
+        GeneroEntity entityToSave = GeneroMapper.dominioToEntity(domain);
+        entityToSave = jpa.save(entityToSave);
+        return GeneroMapper.entityToDominio(entityToSave);
     }
 
     @Override

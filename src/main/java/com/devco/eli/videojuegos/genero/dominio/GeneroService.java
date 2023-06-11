@@ -33,11 +33,18 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
+    public List<Genero> getAllByIds(List<Long> ids) {
+        return generoRepository.getAllByIds(ids);
+    }
+
+    @Override
     public Genero createOrUpdate(GeneroDto dto) {
         Optional<Genero> genero = generoRepository.getByname(dto.getNombre());
         Genero generoToSave;
         generoToSave = genero.orElseGet(Genero::new);
         generoToSave.setNombre(dto.getNombre());
+
+        generoToSave.isValid();
         return generoRepository.save(generoToSave);
     }
 
