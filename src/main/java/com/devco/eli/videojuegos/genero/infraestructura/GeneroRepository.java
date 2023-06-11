@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class GeneroRepository implements IGeneroRepository {
@@ -33,7 +34,7 @@ public class GeneroRepository implements IGeneroRepository {
     }
 
     @Override
-    public List<Genero> getAllByIds(List<Long> ids) {
+    public List<Genero> getAllByIds(Set<Long> ids) {
         List<GeneroEntity> entities = jpa.findAllById(ids);
         return GeneroMapper.entityToDominio(entities);
     }

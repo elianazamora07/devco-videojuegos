@@ -7,8 +7,10 @@ import com.devco.eli.videojuegos.genero.dominio.port.IGeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class GeneroService implements IGeneroService {
@@ -33,8 +35,8 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
-    public List<Genero> getAllByIds(List<Long> ids) {
-        return generoRepository.getAllByIds(ids);
+    public Set<Genero> getAllByIds(Set<Long> ids) {
+        return new HashSet<>(generoRepository.getAllByIds(ids));
     }
 
     @Override

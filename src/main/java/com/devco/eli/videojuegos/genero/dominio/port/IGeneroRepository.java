@@ -4,6 +4,7 @@ import com.devco.eli.videojuegos.genero.dominio.Genero;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface IGeneroRepository {
     Optional<Genero> getById(Long id);
@@ -12,7 +13,7 @@ public interface IGeneroRepository {
 
     List<Genero> getAll();
 
-    List<Genero> getAllByIds(List<Long> ids);
+    List<Genero> getAllByIds(Set<Long> ids);
 
     Genero save(Genero domain);
 

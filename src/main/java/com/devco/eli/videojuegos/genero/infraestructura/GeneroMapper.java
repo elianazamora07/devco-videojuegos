@@ -4,6 +4,7 @@ import com.devco.eli.videojuegos.genero.dominio.Genero;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GeneroMapper {
@@ -16,6 +17,18 @@ public class GeneroMapper {
             dominio = entityToDominio(entity.get());
         }
         return Optional.ofNullable(dominio);
+    }
+
+    public static Set<Genero> entityToDominio(Set<GeneroEntity> entitys) {
+        return entitys.stream()
+                .map(GeneroMapper::entityToDominio)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<GeneroEntity> dominioToEntity(Set<Genero> dominios) {
+        return dominios.stream()
+                .map(GeneroMapper::dominioToEntity)
+                .collect(Collectors.toSet());
     }
 
     public static List<Genero> entityToDominio(List<GeneroEntity> entitys) {

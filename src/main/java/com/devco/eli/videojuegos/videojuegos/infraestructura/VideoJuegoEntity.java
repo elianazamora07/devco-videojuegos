@@ -5,7 +5,8 @@ import com.devco.eli.videojuegos.genero.infraestructura.GeneroEntity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,6 +27,15 @@ public class VideoJuegoEntity {
     @ManyToOne()
     private ConsolaEntity consolaEntity;
 
-    @OneToMany(mappedBy = "generoId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GeneroEntity> generosEntity;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "juegos_generos",
+            joinColumns = @JoinColumn(
+                    name = "juego_id", referencedColumnName = "juegoId"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "genero_id", referencedColumnName = "generoId"
+            )
+    )
+    private Set<GeneroEntity> generosEntity = new HashSet<>();
 }

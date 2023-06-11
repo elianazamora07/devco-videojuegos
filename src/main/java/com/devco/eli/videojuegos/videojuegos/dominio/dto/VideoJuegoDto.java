@@ -2,7 +2,7 @@ package com.devco.eli.videojuegos.videojuegos.dominio.dto;
 
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class VideoJuegoDto {
@@ -11,5 +11,5 @@ public class VideoJuegoDto {
     private Integer cantidad;
     private Long precio;
     private Long consolaId;
-    private List<Long> generosIds;
+    private Set<Long> generosIds;
 }

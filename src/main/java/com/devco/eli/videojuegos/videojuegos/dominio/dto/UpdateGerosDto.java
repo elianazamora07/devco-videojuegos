@@ -2,9 +2,9 @@ package com.devco.eli.videojuegos.videojuegos.dominio.dto;
 
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class UpdateGerosDto {
-    List<Long> generosIds;
+    Set<Long> generosIds;
 }

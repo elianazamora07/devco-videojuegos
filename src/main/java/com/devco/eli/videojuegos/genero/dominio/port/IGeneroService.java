@@ -4,6 +4,7 @@ import com.devco.eli.videojuegos.genero.dominio.Genero;
 import com.devco.eli.videojuegos.genero.dominio.dto.GeneroDto;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IGeneroService {
 
@@ -11,7 +12,7 @@ public interface IGeneroService {
 
     List<Genero> getAll();
 
-    List<Genero> getAllByIds(List<Long> ids);
+    Set<Genero> getAllByIds(Set<Long> ids);
 
     Genero createOrUpdate(GeneroDto dto);
 

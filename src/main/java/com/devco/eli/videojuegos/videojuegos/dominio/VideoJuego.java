@@ -5,7 +5,7 @@ import com.devco.eli.videojuegos.consola.dominio.Consola;
 import com.devco.eli.videojuegos.genero.dominio.Genero;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class VideoJuego {
@@ -22,7 +22,7 @@ public class VideoJuego {
     private Integer cantidad;
     private Long precio;
     private Consola consola;
-    private List<Genero> generos;
+    private Set<Genero> generos;
 
     public void isValid() {
         if (nombre.isBlank()) {

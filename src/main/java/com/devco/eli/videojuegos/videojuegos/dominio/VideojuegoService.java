@@ -12,11 +12,14 @@ import com.devco.eli.videojuegos.videojuegos.dominio.port.IVideoJuegoRepository;
 import com.devco.eli.videojuegos.videojuegos.dominio.port.IVideoJuegoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
+@Transactional
 public class VideojuegoService implements IVideoJuegoService {
 
     private static final String VIDEO_JUEGO_NO_ENCONTRADO = "No se encontro el video juego con el ID ";
@@ -53,7 +56,7 @@ public class VideojuegoService implements IVideoJuegoService {
         Consola consola = consolaService.getById(dto.getConsolaId());
         videoJuego.setConsola(consola);
 
-        List<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
+        Set<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
         videoJuego.setGeneros(generos);
 
         videoJuego.isValid();
@@ -71,7 +74,7 @@ public class VideojuegoService implements IVideoJuegoService {
         Consola consola = consolaService.getById(dto.getConsolaId());
         videoJuego.setConsola(consola);
 
-        List<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
+        Set<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
         videoJuego.setGeneros(generos);
 
         videoJuego.isValid();
@@ -81,7 +84,7 @@ public class VideojuegoService implements IVideoJuegoService {
     @Override
     public VideoJuego updateGeneros(Long id, UpdateGerosDto dto) {
         VideoJuego videoJuego = this.getById(id);
-        List<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
+        Set<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
         videoJuego.setGeneros(generos);
 
         videoJuego.isValid();
