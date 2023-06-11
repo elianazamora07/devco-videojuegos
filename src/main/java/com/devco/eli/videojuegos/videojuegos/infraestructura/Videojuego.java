@@ -1,9 +1,8 @@
 package com.devco.eli.videojuegos.videojuegos.infraestructura;
 
-import com.devco.eli.videojuegos.consola.infraestructura.Consola;
+import com.devco.eli.videojuegos.consola.infraestructura.ConsolaEntity;
 import com.devco.eli.videojuegos.genero.infraestructura.Genero;
 import lombok.Data;
-
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,7 +23,7 @@ public class Videojuego {
     private String descripcion;
 
     @ManyToOne()
-    private Consola consola;
+    private ConsolaEntity consolaEntity;
 
     private Integer cantidad;
 

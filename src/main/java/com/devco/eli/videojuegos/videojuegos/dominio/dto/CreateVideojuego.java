@@ -1,6 +1,5 @@
 package com.devco.eli.videojuegos.videojuegos.dominio.dto;
 
-import com.devco.eli.videojuegos.consola.infraestructura.Consola;
 import lombok.Data;
 
 import java.util.List;

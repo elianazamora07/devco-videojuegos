@@ -1,8 +1,6 @@
 package com.devco.eli.videojuegos.genero.dominio;
 
 
-
-import com.devco.eli.videojuegos.consola.infraestructura.Consola;
 import com.devco.eli.videojuegos.genero.infraestructura.Genero;
 import com.devco.eli.videojuegos.genero.infraestructura.GeneroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +16,19 @@ public class GeneroService {
     @Autowired
     GeneroRepository generoRepository;
 
-    public List<Genero> getGeneros() {return generoRepository.findAll();}
+    public List<Genero> getGeneros() {
+        return generoRepository.findAll();
+    }
 
-    public Optional<Genero> getGenero(Long id) {return generoRepository.findById(id);}
+    public Optional<Genero> getGenero(Long id) {
+        return generoRepository.findById(id);
+    }
 
-    public void saveOrUpdate(Genero genero){
+    public void saveOrUpdate(Genero genero) {
         generoRepository.save(genero);
     }
 
-    public void delete(Long id) { generoRepository.deleteById(id);}
+    public void delete(Long id) {
+        generoRepository.deleteById(id);
+    }
 }

@@ -1,6 +1,5 @@
 package com.devco.eli.videojuegos.genero.aplicacion;
 
-import com.devco.eli.videojuegos.consola.infraestructura.Consola;
 import com.devco.eli.videojuegos.genero.dominio.GeneroService;
 import com.devco.eli.videojuegos.genero.infraestructura.Genero;
 import org.springframework.beans.factory.annotation.Autowired;
