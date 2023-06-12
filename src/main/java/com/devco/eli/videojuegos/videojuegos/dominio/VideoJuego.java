@@ -37,7 +37,7 @@ public class VideoJuego {
         if (consola == null || consola.getId() == null) {
             throw new BadRequest(CONSOLA_INVALIDA);
         }
-        if (generos == null || generos.size() == 0) {
+        if (generos == null || generos.isEmpty()) {
             throw new BadRequest(GENEROS_INVALIDOS);
         }
     }
