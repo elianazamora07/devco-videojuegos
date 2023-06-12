@@ -48,24 +48,18 @@ public class VideojuegoService implements IVideoJuegoService {
     @Override
     public VideoJuego create(VideoJuegoDto dto) {
         VideoJuego videoJuego = new VideoJuego();
-        videoJuego.setNombre(dto.getNombre());
-        videoJuego.setDescripcion(dto.getDescripcion());
-        videoJuego.setCantidad(dto.getCantidad());
-        videoJuego.setPrecio(dto.getPrecio());
-
-        Consola consola = consolaService.getById(dto.getConsolaId());
-        videoJuego.setConsola(consola);
-
-        Set<Genero> generos = generoService.getAllByIds(dto.getGenerosIds());
-        videoJuego.setGeneros(generos);
-
-        videoJuego.isValid();
+        settearInfo(videoJuego, dto);
         return videoJuegoRepository.save(videoJuego);
     }
 
     @Override
     public VideoJuego update(Long id, VideoJuegoDto dto) {
         VideoJuego videoJuego = this.getById(id);
+        settearInfo(videoJuego, dto);
+        return videoJuegoRepository.save(videoJuego);
+    }
+
+    private void settearInfo(VideoJuego videoJuego, VideoJuegoDto dto) {
         videoJuego.setNombre(dto.getNombre());
         videoJuego.setDescripcion(dto.getDescripcion());
         videoJuego.setCantidad(dto.getCantidad());
@@ -78,7 +72,6 @@ public class VideojuegoService implements IVideoJuegoService {
         videoJuego.setGeneros(generos);
 
         videoJuego.isValid();
-        return videoJuegoRepository.save(videoJuego);
     }
 
     @Override
