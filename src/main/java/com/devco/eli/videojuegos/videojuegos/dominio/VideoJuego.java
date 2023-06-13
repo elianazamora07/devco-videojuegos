@@ -25,13 +25,13 @@ public class VideoJuego {
     private Set<Genero> generos;
 
     public void isValid() {
-        if (nombre.isBlank()) {
+        if (nombre == null || nombre.isBlank()) {
             throw new BadRequest(NOMBRE_INVALIDO);
         }
-        if (cantidad < 0) {
+        if (cantidad == null || cantidad < 0) {
             throw new BadRequest(CANTIDAD_INVALIDA);
         }
-        if (precio < 0) {
+        if (precio == null || precio < 0) {
             throw new BadRequest(PRECIO_INVALIDO);
         }
         if (consola == null || consola.getId() == null) {

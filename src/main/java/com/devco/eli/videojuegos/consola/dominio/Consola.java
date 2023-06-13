@@ -12,7 +12,7 @@ public class Consola {
     private String nombre;
 
     public void isValid() {
-        if (nombre.isBlank()) {
+        if (nombre == null || nombre.isBlank()) {
             throw new BadRequest(NOMBRE_INVALIDO);
         }
     }
