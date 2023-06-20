@@ -18,9 +18,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v1.4.4
       with:
-        java-version: "17"
-    - name: Clean Maven
-      run: mvn clean    
+        java-version: "17"   
     - name: Set up Maven
       run: sudo apt-get install -y maven    
     - name: Build with Maven
