@@ -25,7 +25,6 @@ jobs:
       run: mvn test 
     - name: Generate code coverage report
       run:  chmod +x mvnw; ./mvnw jacoco:report
-    - name: Analyze with SonarCloud
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.9.1
     - name: SonarQube Quality Gate Check
