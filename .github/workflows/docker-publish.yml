@@ -26,7 +26,7 @@ jobs:
     - name: Generate code coverage report
       run:  chmod +x mvnw; ./mvnw jacoco:report
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v1.9.1
+      run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=elianazamora07_devco-videojuegos -Dsonar.organization=elianazamora07 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
     - name: SonarQube Quality Gate Check
       uses: sonarsource/sonarqube-quality-gate-action@master
       timeout-minutes: 5
