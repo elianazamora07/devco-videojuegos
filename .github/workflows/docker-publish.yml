@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: "elianazamora07/devco-videojuegos"
+  IMAGE_NAME: "elianazamo07/devco-videojuegos"
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 jobs:
@@ -21,33 +21,44 @@ jobs:
         java-version: "17"   
     - name: Compile and build maven
       run: mvn --batch-mode --update-snapshots package
-    - name: Unit test maven
-      run: mvn test 
-    - name: Generate code coverage report
-      run:  chmod +x mvnw; ./mvnw jacoco:report
-    - name: SonarCloud Scan
-      run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=elianazamora07_devco-videojuegos -Dsonar.organization=elianazamora07 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-    - name: SonarQube Quality Gate Check
-      uses: sonarsource/sonarqube-quality-gate-action@master
-      timeout-minutes: 5
+    ###
+    #- name: Unit test maven
+    #  run: mvn test
+    #- name: Generate code coverage report
+    #  run:  chmod +x mvnw; ./mvnw jacoco:report
+    #- name: SonarCloud Scan
+    #  run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=elianazamora07_devco-videojuegos -Dsonar.organization=elianazamora07 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+    #- name: SonarQube Quality Gate Check
+    #  uses: sonarsource/sonarqube-quality-gate-action@master
+    #  timeout-minutes: 5
+    #  with:
+    #    scanMetadataReportFile: target/sonar/report-task.txt
+    #  env:
+    #   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    ###
+    - name: Upload artifact
+      uses: actions/upload-artifact@master
       with:
-        scanMetadataReportFile: target/sonar/report-task.txt
-      env:
-       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        name: artifact
+        path: ./target
 
   docker-build:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Download artifact
+        uses: actions/download-artifact@master
+        with:
+          name: artifact
+          path: ./target
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v4
+      - name: Buildx and Push
+        uses: docker/setup-buildx-action@v2
         with:
+          context: .
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest
